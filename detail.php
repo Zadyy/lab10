@@ -8,7 +8,8 @@
 <body>
     <h2>Look for data from the database</h2>
 
-    <label>Хайх утыг оруулна уу?</label>
+    <label>Хайх утыг оруулна уу?</label> <br>
+    <label>Жишээлбэл: HI001-HI050, R01-R10</label> <br>
     <input type="character" id="parameterinput">
     <button onclick="activatephp()">Хайх</button>
 
@@ -33,7 +34,7 @@
             divelement.innerHTML = "";
 
             if (data.message) {
-                divelement.innerHTML = data.message;
+                divelement.innerHTML = "<p>Үр дүн олдсонгүй.</p>";
             } else {
                 data.forEach(record => {
                     divelement.innerHTML += "<p>" + record.roomno + " нэртэй өрөөнд " + record.condition + " " + record.itemno + " " + record.quantity + " ширхэг байна. "  + "</p>";
