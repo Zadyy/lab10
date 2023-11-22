@@ -6,9 +6,9 @@
 </head>
 
 <body>
-    <h2>Look for data from the database</h2>
+    <h2>Тухайн дугаартай холбогдолтой мэдээллийг харах хуудас.</h2>
 
-    <label>Хайх утыг оруулна уу?</label> <br>
+    <label>Хайх утгыг оруулна уу?</label> <br>
     <label>Жишээлбэл: HI001-HI050, R01-R10</label> <br>
     <input type="character" id="parameterinput">
     <button onclick="activatephp()">Хайх</button>

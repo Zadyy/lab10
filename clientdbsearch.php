@@ -30,6 +30,7 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $response[] = [
             'size' => $row['size'],
+            'area' => $row['area'],
             'itemname' => $row['itemname'],
             'roomname' => $row['roomname'],
             'quantity' => $row['quantity'],
