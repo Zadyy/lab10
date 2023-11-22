@@ -31,8 +31,8 @@ CREATE TABLE itemlocation (
     roomno CHAR(3),
     quantity INT,
     condition1 VARCHAR(4),
-    FOREIGN KEY (itemno) REFERENCES householditems(itemNo),
-    FOREIGN KEY (roomno) REFERENCES room(roomNo)
+    FOREIGN KEY (itemno) REFERENCES householditems(itemNo) ON UPDATE CASCADE,
+    FOREIGN KEY (roomno) REFERENCES room(roomNo) ON UPDATE CASCADE
 );
 
 INSERT INTO householditems (itemno, itemname, size) 
@@ -202,4 +202,6 @@ VALUES
 ('HI004', 'R01', 1, 'used'),
 ('HI003', 'R02', 1, 'new'),
 ('HI002', 'R03', 1, 'used'),
-('HI001', 'R04', 1, 'new');
+('HI001', 'R04', 1, 'new'),
+('HI036','R01','3','new'), 
+('HI018','R02','2','used');
