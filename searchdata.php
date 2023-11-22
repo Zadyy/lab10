@@ -40,7 +40,7 @@ $stmt->close();
 $conn->close();
 
 // set json, turn to comment if json is not necessary
-// header('Content-Type: application/json');
-// echo json_encode($response);
+header('Content-Type: application/json');
+echo json_encode($response);
 
 ?>

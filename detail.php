@@ -12,6 +12,8 @@
     <input type="character" id="parameterinput">
     <button onclick="activatephp()">Хайх</button>
 
+    <div id="result"></div>
+
     <script>
         function activatephp() {
             var parametervalue = document.getElementById("parameterinput").value
@@ -19,15 +21,27 @@
             fetch('searchdata.php?parameter=' + parametervalue)
             .then(Response => Response.json())
             .then(data => {
-                displayResult(data);
+                display(data);
             })
             .catch(error => {
                 console.error(error);
             });
         }
 
+        function display(data) {
+            var divelement = document.getElementById("result");
+            divelement.innerHTML = "";
 
+            if (data.message) {
+                divelement.innerHTML = data.message;
+            } else {
+                data.forEach(record => {
+                    divelement.innerHTML += "<p>ItemNo: " + record.itemno + " - RoomNo: " + record.roomno + " - Quantity: " + record.quantity + " - Condition: " + record.condition + "</p>";
+                });
+            }
+        }
 
     </script>
 
 </body>
+</html>
