@@ -1,0 +1,14 @@
+householditems
+    itemNo
+    itemname
+    size
+
+room
+    roomNo
+    roomname
+    area
+
+itemlocation
+    itemNo
+    roomNo
+    quantity
