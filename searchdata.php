@@ -12,7 +12,14 @@ if ($conn->connect_error) {
 }
 
 $parameter = isset($_GET['parameter']) ? $_GET['parameter'] : '';
-$sql = "SELECT * FROM itemlocation WHERE itemno = ? OR roomno = ?";
+
+// for daalgavar 1
+// $sql = "SELECT * FROM itemlocation WHERE itemno = ? OR roomno = ?";
+
+// for daalgavar 2
+$sql = "SELECT h.itemname as itemno, r.roomname as roomno, il.quantity as quantity, il.condition1 as condition1 FROM itemlocation il inner join householditems h on h.itemno = il.itemno inner join room r on r.roomno = il.roomno WHERE il.itemno = ? OR il.roomno = ?";
+
+
 
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("ss", $parameter, $parameter);

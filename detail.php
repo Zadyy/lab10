@@ -36,7 +36,7 @@
                 divelement.innerHTML = data.message;
             } else {
                 data.forEach(record => {
-                    divelement.innerHTML += "<p>ItemNo: " + record.itemno + " - RoomNo: " + record.roomno + " - Quantity: " + record.quantity + " - Condition: " + record.condition + "</p>";
+                    divelement.innerHTML += "<p>" + record.roomno + " нэртэй өрөөнд " + record.condition + " " + record.itemno + " " + record.quantity + " ширхэг байна. "  + "</p>";
                 });
             }
         }
