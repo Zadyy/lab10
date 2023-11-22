@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,23 +29,24 @@
     <div id="result"></div>
 
     <script>
-
-
         function activatephp() {
             var selectelement = document.getElementById("roomlist");
             var parametervalue = selectelement.value;
 
             fetch('clientdbsearch.php?parameter=' + parametervalue)
-            .then(Response => Response.json())
-            .then(data => {
-                display(data);
-            })
-            .catch(error => {
-                console.error(error);
-            });
+                .then(Response => Response.json())
+                .then(data => {
+                    display(data);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
         }
 
         function display(data) {
+            var selectelement = document.getElementById("roomlist");
+            var parametervalue = selectelement.value;
+
             var divelement = document.getElementById("result");
             divelement.innerHTML = "";
 
@@ -52,18 +54,36 @@
                 divelement.innerHTML = "<p>Үр дүн олдсонгүй.</p>";
             } else {
 
-                var a = 0
-                data.forEach(record => {
-                    if (a==0) {
-                        divelement.innerHTML = "<p>" + record.roomname + " өрөө нь " + record.area + " метр квадратын талбайтай өрөө байна. Үүнд:</p>";
-                        a = a + 1;
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        var a = 0
+                        var records = JSON.parse(xhr.responseText);
+                        records.forEach(function(record) {
+                            if (a == 0) {
+                                divelement.innerHTML = "<p>" + record.roomname + " өрөө нь " + record.area + " метр квадратын талбайтай өрөө байна. Үүнд:</p>";
+                                a = a + 1;
+                            }
+                            divelement.innerHTML += "<p>" + record.size + " " + record.condition + " " + record.itemname + " нь " + record.quantity + " ширхэг байна. " + "</p>";
+                        })
                     }
-                    divelement.innerHTML += "<p>" + record.size + " " + record.condition + " " + record.itemname + " нь " + record.quantity +" ширхэг байна. "  + "</p>";
-                });
+                }
+
+                // var a = 0
+                // data.forEach(record => {
+                //     if (a == 0) {
+                //         divelement.innerHTML = "<p>" + record.roomname + " өрөө нь " + record.area + " метр квадратын талбайтай өрөө байна. Үүнд:</p>";
+                //         a = a + 1;
+                //     }
+                //     divelement.innerHTML += "<p>" + record.size + " " + record.condition + " " + record.itemname + " нь " + record.quantity + " ширхэг байна. " + "</p>";
+                // });
+
+                xhr.open('GET', 'clientdbsearch.php?parameter=' + parametervalue, true);
+                xhr.send();
             }
         }
-
     </script>
 
 </body>
+
 </html>
